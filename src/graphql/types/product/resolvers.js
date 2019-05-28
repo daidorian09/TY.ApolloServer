@@ -18,12 +18,12 @@ const resolvers = {
         const graphqlBackendEndpoint = process.env.BACKENDENDPOINT
 
         restClient(graphqlBackendEndpoint, queryString).then((data) => {
-          if (!data.data.getProductById.data) {
-            logger.error(`getProductById null response: \n"${JSON.stringify(data, null, 4)}`)
+          if (!data.data.getProductById) {
+            logger.error(`getProductById null response: ${JSON.stringify(data, null, 4)}`)
           }
           resolve(data.data.getProductById)
         }).catch((err) => {
-          logger.error(`getProductById failed: \n"${JSON.stringify(err, null, 4)}`)
+          logger.error(`getProductById failed: ${JSON.stringify(err.stack, null, 4)}`)
           reject(new Error(err))
         })
       })
@@ -45,11 +45,11 @@ const resolvers = {
 
         restClient(graphqlBackendEndpoint, queryString).then((data) => {
           if (!data.data.createProduct.data) {
-            logger.error(`createProduct null response: \n"${JSON.stringify(data, null, 4)}`)
+            logger.error(`createProduct null response: ${JSON.stringify(data, null, 4)}`)
           }
           resolve(data.data.createProduct)
         }).catch((err) => {
-          logger.error(`createProduct failed: \n"${JSON.stringify(err, null, 4)}`)
+          logger.error(`createProduct failed: ${JSON.stringify(err, null, 4)}`)
           reject(new Error(err))
         })
       })

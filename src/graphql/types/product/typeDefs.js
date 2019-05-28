@@ -67,7 +67,7 @@ type Product{
   #Product Website Url
   productUrl : String
   #Product Content Id
-  ProductContentId : String!
+  productContentId : String!
   #Product Stock Count
   stockCount : Int!
   #Product Deletion Status
@@ -75,20 +75,14 @@ type Product{
   #Product Variant(s)
   variants : [Variant]
 }
-
-#Product Response
-type ProductResponse{
- #Product Object
- data: Product
-}
 `
 
 module.exports = {
   typeDefs,
   query: [
-    'getProductById(id : String!) : ProductResponse'
+    'getProductById(id : String!) : Product'
   ],
   mutation: [
-    'createProduct(product : ProductInput!): ProductResponse'
+    'createProduct(product : ProductInput!): Product'
   ]
 }

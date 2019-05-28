@@ -38,10 +38,7 @@ if(!graphQLPort) {
 } else {
   // Start the server
   app.listen(graphQLPort, () => {
-    logger.info('##########################################################')
-    logger.info('#####               STARTING SERVER                  #####')
-    logger.info('##########################################################\n')
-    logger.info(`GraphQL Server is now running on http://localhost:${graphQLPort}/graphiql`)
+    logger.info(`🚀 GraphQL Server is now running on http://localhost:${graphQLPort}/graphiql`)
   })
 }
 

@@ -1,21 +1,28 @@
 const logger = require('../logger/logger')
 const axios = require('axios')
 
-const httpRequest = function sendHttpRequest (endpoint, mutationQueryString) {
+const httpRequest = function sendHttpRequest (endpoint, graphQLQueryString) {
   return new Promise(function (resolve, reject) {
     logger.info('sendHttpRequest is called')
     try {
-      const response = axios({
+      axios({
         method: 'post',
         url: endpoint,
-        data: {
-          query: mutationQueryString
+        data : {
+          "query" : graphQLQueryString
         },
-        timeout: 20000
-      })
-      resolve(JSON.parse(response))
+        timeout : 2000,
+      }).then(resp => {
+        if(resp && resp.status === 200 && resp.data) {
+          return resolve(resp.data) 
+        } 
+        return reject(new Error())
+      }).catch(err => {
+        logger.error(`axios failed : ${JSON.stringify(err.stack, null, 4)}`)
+        return reject(new Error(err.message))
+      })   
     } catch (error) {
-      logger.error(`sendHttpRequest failed : \n"${JSON.stringify(error, null, 4)}`)
+      logger.error(`sendHttpRequest failed : ${JSON.stringify(error, null, 4)}`)
       throw new Error(error.message)
     }
   })
