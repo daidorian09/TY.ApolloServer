@@ -11,7 +11,7 @@ const httpRequest = function sendHttpRequest (endpoint, graphQLQueryString) {
         data : {
           "query" : graphQLQueryString
         },
-        timeout : 2000,
+        timeout : 20000,
       }).then(resp => {
         if(resp && resp.status === 200 && resp.data) {
           return resolve(resp.data) 
