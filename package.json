@@ -36,7 +36,7 @@
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.0.1",
     "babel-preset-stage-3": "^6.24.1",
     "dotenv": "^8.0.0",
